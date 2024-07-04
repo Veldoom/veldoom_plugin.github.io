@@ -29,7 +29,7 @@
         import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
         const firebaseConfig = {
-            apiKey: "API_KEY",
+            apiKey: "AIzaSyB8PDgiXHmgnK_F36Y-3OurAeR8X0Jjjec",
             authDomain: "veldoom-plugin.firebaseapp.com",
             databaseURL: "https://veldoom-plugin-default-rtdb.europe-west1.firebasedatabase.app",
             projectId: "veldoom-plugin",
@@ -48,7 +48,7 @@
         pl_form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const pl_name = document.getElementById('pseudo').value;
+            const pseudo = document.getElementById('pseudo').value;
             const desc = document.getElementById('desc').value;
 
             const num_ref = ref(db, 'num');
