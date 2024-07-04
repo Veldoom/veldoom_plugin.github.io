@@ -1,10 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>new plugin</title>
-    </head>
-    <body>
-        <h1>create new plugin</h1>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Plugin</title>
+    <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+    <div class="container">
+        <h1>Add a New Plugin!</h1>
+        <form id="plugin-form" autocomplete="off">
+            <div class="input-container ic1">
+                <input id="pl_name" class="input" type="text" placeholder=" " />
+                <div class="cut"></div>
+                <label for="pl_name" class="placeholder">Plugin name</label>
+              </div>
+              <div class="input-container ic2">
+                <input id="desc" class="input" type="text" placeholder=" " />
+                <div class="cut"></div>
+                <label for="desc" class="placeholder">Plugin description</label>
+              </div>
+            <button type="submit" class="submit">Submit</button>
+        </form>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "API_KEY",
+            authDomain: "veldoom-plugin.firebaseapp.com",
+            databaseURL: "https://veldoom-plugin-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "veldoom-plugin",
+            storageBucket: "veldoom-plugin.appspot.com",
+            messagingSenderId: "568420946123",
+            appId: "1:568420946123:web:2b30928c93244338114b4e",
+            measurementId: "G-7N3PYGSHYD"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getDatabase(app);
+
+        const pl_form = document.getElementById('plugin-form');
+
+        pl_form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const pl_name = document.getElementById('pl_name').value;
+            const desc = document.getElementById('desc').value;
+
+            const num_ref = ref(db, 'num');
+
+            try {
+                const snapshot = await get(num_ref);
+                let num = 0;
+                if (snapshot.exists()) {
+                    num = snapshot.val();
+                }
+                let new_num = num + 1;
+
+                await set(num_ref, new_num);
+
+                let pl_ref = ref(db, 'plugin' + new_num);
+                await set(pl_ref, {
+                    name: pl_name,
+                    description: desc
+                });
+
+                alert("Plugin added successfully!");
+            } catch (error) {
+                console.error("Error adding plugin: ", error);
+            }
+        });
+    </script>
+</body>
 </html>
