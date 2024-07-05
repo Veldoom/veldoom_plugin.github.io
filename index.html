@@ -8,19 +8,19 @@
 </head>
 <body>
     <div class="container">
-        <h1>Add a New Plugin!</h1>
+        <h1>ajoutez un nouveau plugin!</h1>
         <form id="plugin-form" autocomplete="off">
             <div class="input-container ic1">
                 <input id="pseudo" class="input" type="text" placeholder=" " />
-                <div class="cut"></div>
-                <label for="pseudo" class="placeholder">your pseudo</label>
+                <div class="cut_pseudo"></div>
+                <label for="pseudo" class="placeholder">vôtre pseudo</label>
               </div>
               <div class="input-container ic2">
-                <input id="desc" class="input" type="text" placeholder=" " />
-                <div class="cut"></div>
-                <label for="desc" class="placeholder">Plugin description</label>
+                <textarea id="desc" class="input" type="text" placeholder=" "></textarea>
+                <div class="cut_desc"></div>
+                <label for="desc" class="placeholder">description détaillée du plugin ou l'url d'un plugin existant</label>
               </div>
-            <button type="submit" class="submit">Submit</button>
+            <button type="submit" class="submit">ajouter!</button>
         </form>
     </div>
     <script type="module">
@@ -69,7 +69,7 @@
                     description: desc
                 });
 
-                alert("Plugin added successfully!");
+                alert("Le plugin a été ajouté avec succès!");
             } catch (error) {
                 console.error("Error adding plugin: ", error);
             }

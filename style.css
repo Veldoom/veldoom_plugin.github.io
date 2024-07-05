@@ -16,7 +16,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 550px;
     max-width: 100%;
     text-align: center;
 }
@@ -47,12 +47,13 @@ form {
     border: 0;
     box-sizing: border-box;
     font-size: 18px;
+    color: #6E40F2;
     height: 100%;
     outline: 0;
     padding: 4px 20px 0;
     width: 100%;
 }
-.cut {
+.cut_desc {
     background-color: #1E2233;
     border-radius: 10px;
     height: 20px;
@@ -61,10 +62,25 @@ form {
     top: -20px;
     transform: translateY(0);
     transition: transform 200ms;
-    width: 115px;
+    width: 325px;
 }
-.input:focus ~ .cut,
-.input:not(:placeholder-shown) ~ .cut {
+.cut_pseudo {
+    background-color: #1E2233;
+    border-radius: 10px;
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    top: -20px;
+    transform: translateY(0);
+    transition: transform 200ms;
+    width: 90px;
+}
+.input:focus ~ .cut_desc,
+.input:not(:placeholder-shown) ~ .cut_desc {
+    transform: translateY(8px);
+}
+.input:focus ~ .cut_pseudo,
+.input:not(:placeholder-shown) ~ .cut_pseudo {
     transform: translateY(8px);
 }
 .placeholder {
